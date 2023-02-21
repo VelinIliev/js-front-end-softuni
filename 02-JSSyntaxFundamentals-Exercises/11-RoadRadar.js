@@ -18,9 +18,7 @@ function main(speed, zone) {
         console.log(`The speed is ${over_speed} km/h faster than the allowed speed of ${speed_limit} - excessive speeding`);
     } else {
         console.log(`The speed is ${over_speed} km/h faster than the allowed speed of ${speed_limit} - reckless driving`);
-
     }
-
 } 
 
 main(40, 'city')

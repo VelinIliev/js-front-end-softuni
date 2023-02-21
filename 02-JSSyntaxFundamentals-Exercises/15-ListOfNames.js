@@ -6,4 +6,3 @@ function main(names) {
 }
 
 main(["John", "Bob", "Christina", "Ema"])
-main(["John","John", 1])
