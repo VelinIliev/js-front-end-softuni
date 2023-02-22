@@ -7,6 +7,7 @@ function main(params) {
             break;
         } else if  (index == 3) {
             console.log(`User ${username} blocked!`);
+            break;
         } else {
             console.log('Incorrect password. Try again.');
         }
