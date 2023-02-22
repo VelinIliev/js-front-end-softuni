@@ -31,10 +31,10 @@ function main(base, increacment) {
         width -= 2;
         length -= 2;
     }
-    console.log(`Stone required: ${stone.toFixed(0)}`);
-    console.log(`Marble required: ${marble.toFixed(0)}`);
-    console.log(`Lapis Lazuli required: ${lazuli.toFixed(0)}`);
-    console.log(`Gold required: ${gold.toFixed(0)}`);
+    console.log(`Stone required: ${Math.ceil(stone)}`);
+    console.log(`Marble required: ${Math.ceil(marble)}`);
+    console.log(`Lapis Lazuli required: ${Math.ceil(lazuli)}`);
+    console.log(`Gold required: ${Math.ceil(gold)}`);
     console.log(`Final pyramid height: ${Math.floor(layer * height)}`);
 }
 
