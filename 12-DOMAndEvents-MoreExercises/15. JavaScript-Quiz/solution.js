@@ -3,23 +3,25 @@
 function solve() {
     const questions = document.querySelectorAll('#quizzie section');
     let rightAnswers = ['2', '2', '2'];
-    let results = []
+    let results = [];
 
     function finalState(){
         const resultsEl = document.getElementById('results');
-        let output = document.querySelector('#results h1')
+        let output = resultsEl.querySelector('h1');
 
         resultsEl.style.display = 'block';
         let correctResults = 0;
+
         for (let i = 0; i < results.length; i++) {
             if (results[i] === rightAnswers[i]) {
-                correctResults += 1
+                correctResults += 1;
             }
         }
+
         if (correctResults === 3) {
-            output.innerHTML = 'You are recognized as top JavaScript fan!'
+            output.innerHTML = 'You are recognized as top JavaScript fan!';
         } else {
-            output.innerHTML = `You have ${correctResults} right answers`
+            output.innerHTML = `You have ${correctResults} right answers`;
         }
     };
 
@@ -32,14 +34,12 @@ function solve() {
         let rightAnswer = currentQuestion.querySelector('.high-value');
 
         function takeAnswer(e) {
-            let answer = ''
+            let answer = '';
 
-            if (e.target.tagName.toUpperCase() == 'P') {
-                answer = e.target.parentElement.parentElement.dataset.quizindex;
-            } else if (e.target.tagName.toUpperCase() == 'DIV'){
-                answer = e.target.parentElement.dataset.quizindex;
-            } else if ((e.target.tagName.toUpperCase() == 'LI')) {
-                answer = e.target.dataset.quizindex;
+            switch (e.target.tagName.toUpperCase()) {
+                case "P": answer = e.target.parentElement.parentElement.dataset.quizindex; break;
+                case 'DIV': answer = e.target.parentElement.dataset.quizindex; break;
+                case 'LI': answer = e.target.dataset.quizindex; break;
             }
 
             results.push(answer);
@@ -48,7 +48,7 @@ function solve() {
             if (index < questions.length - 1){
                 currentQuestion[index + 1];
                 currentQuestion = questions[index + 1];
-                newQuestion(currentQuestion, index + 1)
+                newQuestion(currentQuestion, index + 1);
             } else {
                 finalState();
                 return;
@@ -59,6 +59,6 @@ function solve() {
         rightAnswer.addEventListener('click', takeAnswer);
     }
 
-    currentQuestion = questions[0]
+    currentQuestion = questions[0];
     newQuestion(currentQuestion, 0);
 }
