@@ -6,10 +6,8 @@ function solve() {
     const tbody = document.querySelector('tbody');
     const outputArea = exercise.children[4];
     
-   
-
-    generateBtn.addEventListener('click', () => {
-        data = JSON.parse(textarea.value)
+   function generateItems() {
+    data = JSON.parse(textarea.value)
         for (let i = 0; i < data.length; i++){
             tbody.innerHTML += 
             `<tr>
@@ -20,7 +18,9 @@ function solve() {
                 <td><input type="checkbox" /></td>
             </tr>`
         }
-    })
+   }
+
+    generateBtn.addEventListener('click',generateItems)
         
     
     function buyItems() {
