@@ -6,51 +6,23 @@ function solve() {
     const tbody = document.querySelector('tbody');
     const outputArea = exercise.children[4];
     
-    fetch("./furniture.json")
-    .then(response => response.json())
-    .then(data => {
-                display(data)
-            }
-        );
-    function display(data) {
-        let output = [["["]]
-        for (let i = 0; i < data.length; i++) {
-            output.push("   {")
-            output.push(`       img: ${data[i].img},`);
-            output.push(`       name: ${data[i].name},`);
-            output.push(`       price: ${data[i].price},`);
-            output.push(`       decFactor: ${data[i].decFactor}`);
-            output.push("   },")
-        }
-        output.push("]")
-        textarea.innerHTML = output.join('\n')
+   
 
-        generateBtn.addEventListener('click', () => {
-            for (let i = 0; i < data.length; i++){
-                tbody.innerHTML += 
-                    `<tr>
-                        <td>
-                            <img
-                                src=${data[i].img}>
-                        </td>
-                        <td>
-                            <p>${data[i].name}</p>
-                        </td>
-                        <td>
-                            <p>${data[i].price}</p>
-                        </td>
-                        <td>
-                            <p>${data[i].decFactor}</p>
-                        </td>
-                        <td>
-                            <input type="checkbox" enabled />
-                        </td>
-                    </tr>`
-            }
-            textarea.innerHTML = ''
-        })
+    generateBtn.addEventListener('click', () => {
+        data = JSON.parse(textarea.value)
+        for (let i = 0; i < data.length; i++){
+            tbody.innerHTML += 
+            `<tr>
+                <td><img src=${data[i].img}></td>
+                <td><p>${data[i].name}</p></td>
+                <td><p>${data[i].price}</p></td>
+                <td><p>${data[i].decFactor}</p></td>
+                <td><input type="checkbox" /></td>
+            </tr>`
+        }
+    })
         
-    }
+    
     function buyItems() {
         let dict = {
             'items': [],
@@ -69,7 +41,7 @@ function solve() {
         let output = [];
         output.push(`Bought furniture: ${dict.items.join(", ")}`)
         output.push(`Total price: ${dict.prices.toFixed(2)}`)
-        output.push(`Average decoration factor: ${(dict.decFactor / dict.items.length).toFixed(1)}`)
+        output.push(`Average decoration factor: ${(dict.decFactor / dict.items.length)}`)
         outputArea.value = output.join("\n") 
     }
 
