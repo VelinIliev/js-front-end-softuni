@@ -2,7 +2,7 @@
 
 function solve() {
     const questions = document.querySelectorAll('#quizzie section');
-    let rightAnswers = ['2', '2', '2'];
+    let rightAnswers = ['2', '4', '2'];
     let results = [];
 
     function finalState(){
