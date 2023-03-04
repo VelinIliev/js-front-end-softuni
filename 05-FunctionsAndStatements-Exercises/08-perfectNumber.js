@@ -6,10 +6,10 @@ function main(number) {
         }
         
     }
-    let sumDivisors = 0;
-    divisors.forEach(element => {
-        sumDivisors += element
-    });
+    let sumDivisors = divisors.reduce((a, b) => a + b, 0);
+    // divisors.forEach(element => {
+    //     sumDivisors += element
+    // });
     if (sumDivisors === number) {
         console.log('We have a perfect number!');
     } else {

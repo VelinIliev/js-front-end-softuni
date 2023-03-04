@@ -6,13 +6,13 @@ function main(password) {
         isValid = false
     }
     
-    let count_numbers = 0;
+    let countNumbers = 0;
     let otherChars = false;
 
     for (let i = 0; i < password.length; i++) {
         if ((/[0-9a-zA-Z]/).test(password[i])) {
             if ((/[0-9]/).test(password[i])) {
-                count_numbers += 1
+                countNumbers += 1
             }
         } else {
             otherChars = true;
@@ -22,7 +22,7 @@ function main(password) {
         console.log('Password must consist only of letters and digits');
         isValid = false
     }
-    if (count_numbers < 2) {
+    if (countNumbers < 2) {
         console.log('Password must have at least 2 digits');
         isValid = false;
     }

@@ -1,14 +1,14 @@
 // Judge doesn't like it, but it's a good decision 
 
 function solve() {
-    const questions = document.querySelectorAll('section');
-    const resultsEl = document.getElementById('results');
-    const output = document.querySelector("#results > li > h1");
-
+    const questions = document.querySelectorAll('#quizzie section');
     let rightAnswers = ['2', '4', '2'];
     let results = [];
 
     function finalState(){
+        const resultsEl = document.getElementById('results');
+        let output = resultsEl.querySelector('h1');
+
         resultsEl.style.display = 'block';
         let correctResults = 0;
 
