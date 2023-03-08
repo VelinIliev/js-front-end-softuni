@@ -1,12 +1,12 @@
 function cityTaxes(name, population, treasury) {
     let city = {
-        'name': name,
-        'population': population,
-        'treasury': treasury,
+        name,
+        population,
+        treasury,
         'taxRate': 10,
-        'collectTaxes': () => city['treasury'] += city['population'] * city['taxRate'],
-        'applyGrowth': (x) => city['population'] = Math.floor(city['population'] * (1 + x / 100)),
-        'applyRecession': (x) => city['treasury'] = Math.floor(city['treasury']  * (1 - x / 100))
+        collectTaxes() {this.treasury += this.population * this.taxRate},
+        applyGrowth(x) {this.population = Math.floor(this.population * (1 + x / 100))},
+        'applyRecession': function(x) {this.treasury = Math.floor(this.treasury  * (1 - x / 100))}
 
     }
     return city
