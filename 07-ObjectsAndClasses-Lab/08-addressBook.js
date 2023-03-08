@@ -4,7 +4,7 @@ function main(input) {
         let [name, address] = element.split(":")
         adresses[name] = address
     });
-    let sortedKeys = Object.keys(adresses).sort();
+    let sortedKeys = Object.keys(adresses).sort((a, b) => a.localeCompare(b));
     sortedKeys.forEach(key => {
         console.log(`${key} -> ${adresses[key]}`);
     });
