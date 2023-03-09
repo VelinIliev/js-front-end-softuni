@@ -1,6 +1,7 @@
 function attachEvents() {
 
 	const URL = 'http://localhost:3030/jsonstore/collections/books';
+
 	const loadBooksBtn = document.getElementById('loadBooks');
 	const tableBody = document.querySelector('tbody');
 	const submitBtn = document.querySelector('#form button');
@@ -8,12 +9,10 @@ function attachEvents() {
 	const author = document.querySelector('input[name="author"]');
 	let idToUpdate = ''
 
-
 	function displayBooks(data) {
 		tableBody.innerHTML = '';
 		
 		Object.entries(data).forEach(book => {
-			// console.log(book[0]);
 			tableBody.innerHTML += `
 				<tr id="${book[0]}">
 					<td>${book[1].title}</td>
@@ -35,7 +34,6 @@ function attachEvents() {
 	}
 
 	function updateBook() {
-		// console.log(idToUpdate);
 		fetch(`${URL}/${idToUpdate}`, {
 			method: "PUT",
 			body: JSON.stringify({
@@ -68,8 +66,6 @@ function attachEvents() {
 	}
 	
 	function createBook() {
-		// console.log(title.value);
-		// console.log(author.value);
 		if (title.value && author.value) {
 			fetch(URL, {
 				method: "POST",
@@ -90,6 +86,7 @@ function attachEvents() {
 
 	
 	loadBooksBtn.addEventListener('click', getData);
+	
 	submitBtn.addEventListener('click', () => {
 		if (submitBtn.textContent === 'Save') {
 			updateBook()
@@ -97,8 +94,8 @@ function attachEvents() {
 			createBook()
 		}
 	});
-	// document.addEventListener('DOMContentLoaded', getData)
-	document.addEventListener('click', e => {
+
+	document.addEventListener('click', (e) => {
 		if (e.target.textContent === 'Edit'){
 			let id  = e.target.parentNode.parentNode.id;
 			let parrent = e.target.parentNode.parentNode;
