@@ -1,15 +1,9 @@
 function main(stock, orders) {
+    let combined = [...stock, ...orders]
     let products = {}
-    for (let i = 0; i < stock.length; i += 2) {
-        let [product, quantity] = [stock[i], stock[i + 1] * 1];
-        if (product in products) {
-            products[product] += quantity
-        } else {
-            products[product] = quantity
-        }
-    }
-    for (let i = 0; i < orders.length; i += 2) {
-        let [product, quantity] = [orders[i], orders[i + 1] * 1];
+    
+    for (let i = 0; i < combined.length; i += 2) {
+        let [product, quantity] = [combined[i], combined[i + 1] * 1];
         if (product in products) {
             products[product] += quantity
         } else {
