@@ -6,8 +6,8 @@ function main(input) {
         new_hero = {'name': heroName, 'level': level * 1, 'items': items}
         heroes.push(new_hero)
     });
-    heroes.sort((a,b) => (a.level > b.level) ? 1 : ((b.level > a.level) ? -1 : 0))
-
+    heroes.sort((a,b) => a.level - b.level )
+    
     for (let i = 0; i < heroes.length; i++) {
         console.log(`Hero: ${heroes[i].name}`);
         console.log(`level => ${heroes[i].level}`);

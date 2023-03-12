@@ -1,13 +1,12 @@
 function main(input) {
     let parking = []
+
     input.forEach(element => {
         let [action, plate] = element.split(", ");
         if (action === 'IN'){
-            if (parking.includes(plate)) {
-
-            } else {
+            if (!parking.includes(plate)) {
                 parking.push(plate)
-            }
+            } 
         } else if (action === 'OUT') {
             if (parking.includes(plate)) {
                 let index = parking.indexOf(plate);

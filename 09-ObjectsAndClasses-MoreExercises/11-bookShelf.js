@@ -1,14 +1,11 @@
 function main(input) {
-    let shelfs = {}
+    let shelves = {}
     input.forEach(el => {
         let newData = el.split(" -> ")
         if (newData.length > 1){
-            let shelf = newData[0];
-            let genre = newData[1];
-            if (shelf in shelfs) {
-                
-            } else {
-                shelfs[shelf] = {
+            let [shelf, genre] = newData;
+            if (! (shelf in shelves)) {
+                shelves[shelf] = {
                     'shelfNo': shelf,
                     'genre': genre,
                     'books': []
@@ -16,19 +13,18 @@ function main(input) {
             }
         } else {
             newData = newData[0].split(": ");
-            newData[1] = newData[1].split(", ")
-            let title = newData[0]
-            let author = newData[1][0]
-            let genre = newData[1][1]
-            for (const [key, value] of Object.entries(shelfs)) {
+            let title = newData.shift()
+            let [author, genre] = newData[0].split(", ")
+
+            for (const [key, value] of Object.entries(shelves)) {
                 if (value.genre === genre) {
-                    shelfs[key]['books'].push([title, author])
+                    shelves[key]['books'].push([title, author])
                 }
             }
         }
     });
 
-    let sorted = Object.values(shelfs).sort((x, y) => y['books'].length - x['books'].length)
+    let sorted = Object.values(shelves).sort((x, y) => y['books'].length - x['books'].length)
     sorted.forEach(el => {
         console.log(`${el.shelfNo} ${el.genre}: ${el.books.length}`);
         let sortedBooks = el.books.sort((x,y) => x[0].localeCompare(y[0]))

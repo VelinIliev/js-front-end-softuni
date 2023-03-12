@@ -1,20 +1,19 @@
 function main(input) {
     let words = {}
     let [searchWords, ...sentence] = input
+
     searchWords = searchWords.split(" ")
+    
     for (let i = 0; i < searchWords.length; i++) {
-        words[searchWords[i]] = 0
+        let word = searchWords[i]
+        words[word] = sentence.filter(w => w === word).length
     }
-    sentence.forEach(el => {
-        if (el in words) {
-            words[el] += 1
-        }
-    });
+
     words = Object.entries(words)
         .sort((a, b) => b[1] - a[1])
-    
-    for (let i = 0; i < words.length; i++) {
-        console.log(`${words[i][0]} - ${words[i][1]}`);
+
+    for (const [word, count] of words) {
+        console.log(`${word} - ${count}`);
     }
 }
 

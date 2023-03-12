@@ -8,7 +8,7 @@ class Vehicle{
             'quality': parts.engine * parts.power
         };
         this.fuel = fuel
-        console.log(parts);
+        // console.log(parts);
     }
     drive(fuel) {
         this.fuel -= fuel

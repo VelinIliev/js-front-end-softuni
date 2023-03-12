@@ -2,8 +2,8 @@ function main(input) {
     let dictionary = {}
     input.forEach(element => {
        let newTerm = JSON.parse(element); 
-       let [term, dedinition] = [Object.keys(newTerm), Object.values(newTerm)];
-       dictionary[term] = dedinition
+       let [term, definition] = [Object.keys(newTerm), Object.values(newTerm)];
+       dictionary[term] = definition
     });
     let sortedKeys = Object.keys(dictionary).sort()
     for (let i = 0; i < sortedKeys.length; i++) {
