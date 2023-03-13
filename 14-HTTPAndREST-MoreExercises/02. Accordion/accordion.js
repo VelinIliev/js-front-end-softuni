@@ -2,10 +2,9 @@ function solution() {
     const URL = "http://localhost:3030/jsonstore/advanced/articles/"
     const main = document.querySelector("#main");
     main.innerHTML = "";
-    
-    fetch(`${URL}list`)
-    .then(response => response.json())
-    .then(data => {
+
+
+    function loadArticles(data) {
         Object.values(data).forEach((article) => {
             const div = document.createElement("div");
             div.className = "accordion";
@@ -38,7 +37,12 @@ function solution() {
 
             button.addEventListener("click", getMore);
         });
-    })
+    }
+    
+    fetch(`${URL}list`)
+    .then(response => response.json())
+    .then(data => loadArticles(data))
+    .catch(error => console.log(error))
 }
   
 solution();
