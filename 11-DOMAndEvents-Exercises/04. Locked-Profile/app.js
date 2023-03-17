@@ -1,19 +1,20 @@
 function lockedProfile() {
-    let buttons = document.querySelectorAll('button');
-    for (let i = 0; i < buttons.length; i++) {
-        let button = buttons[i]
-        button.addEventListener('click', (e) => {
+    let buttons = [...document.querySelectorAll('button')];
+    buttons.forEach(button => {
+        button.addEventListener('click',toggleInfo)
+    })
 
-            let hiddenInfo = button.parentNode.children[9];
-            let lockedInput = button.parentNode.children[4]
+    function toggleInfo(e) {
+        let button = e.currentTarget
+        let hiddenInfo = button.parentNode.children[9];
+        let lockedInput = button.parentNode.children[4];
 
-            if (button.innerHTML === 'Show more' && lockedInput.checked === true) {
-                button.innerHTML = 'Hide it';
-                hiddenInfo.style.display = 'block';
-            } else if (button.innerHTML === 'Hide it' && lockedInput.checked === true) {
-                button.innerHTML = 'Show more'
-                hiddenInfo.style.display = 'none';
-            }
-        })
+        if (button.textContent === 'Show more' && lockedInput.checked === true) {
+            button.textContent = 'Hide it';
+            hiddenInfo.style.display = 'block';
+        } else if (button.textContent === 'Hide it' && lockedInput.checked === true) {
+            button.textContent = 'Show more'
+            hiddenInfo.style.display = 'none';
+        }
     }
 }

@@ -4,7 +4,10 @@ function addItem() {
     const newItemValue = document.getElementById('newItemValue');
 
     if (newItemText.value !== '' && newItemValue.value !== ''){
-        menu.innerHTML += `<option value="${newItemValue.value}">${newItemText.value}</option>`;
+        let newOption = document.createElement('option');
+        newOption.value = newItemValue.value;
+        newOption.textContent = newItemText.value;
+        menu.appendChild(newOption)
         newItemText.value = '';
         newItemValue.value = '';
     }
