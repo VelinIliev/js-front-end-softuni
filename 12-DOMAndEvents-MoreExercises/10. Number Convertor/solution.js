@@ -4,18 +4,23 @@ function solve() {
     const selectMenu = document.getElementById('selectMenuTo');
     const output = document.getElementById('result');
 
-    selectMenu.innerHTML = `
-        <option selected value="binary">binary</option>
-        <option selected value="hexadecimal">hexadecimal</option>
-    `
+    let convert = {
+        'binary': (x) => Number(x).toString(2),
+        'hexadecimal': (x) => Number(x).toString(16).toUpperCase()
+    }
+
+    selectMenu.innerHTML = '';
+
+    for (const key in convert) {
+        const optionEl = document.createElement('option');
+        optionEl.value = key;
+        optionEl.textContent = key;
+        selectMenu.appendChild(optionEl);
+    }
 
     function convertTo() {
-        if (selectMenu.value == 'binary') {
-            output.value = (Number(input.value).toString(2));
-        } else if (selectMenu.value == 'hexadecimal') {
-            output.value = (Number(input.value).toString(16)).toUpperCase();
-
-        };
+        let numberToConvert = input.value
+        output.value = convert[selectMenu.value](numberToConvert)
     }
 
     convertBtn.addEventListener('click', convertTo)

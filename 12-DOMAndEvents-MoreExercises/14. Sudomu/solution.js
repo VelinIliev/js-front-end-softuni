@@ -9,7 +9,6 @@ function solve() {
         let matrix = [];
         let isValid = true;
 
-        // take input and check if is valid
         for (let row = 0; row < 3; row++) {
             let row1 = [];
             for (let col = 0; col < 3; col++) {

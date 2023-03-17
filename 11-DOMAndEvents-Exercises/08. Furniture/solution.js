@@ -58,7 +58,6 @@ function solve() {
             
             const inputBox = row.querySelector('td>input');
 
-            console.log(row);
             if (inputBox.checked) {
                 dict['items'].push(row.children[1].children[0].textContent);
                 dict['prices'] += row.children[2].children[0].textContent * 1;
