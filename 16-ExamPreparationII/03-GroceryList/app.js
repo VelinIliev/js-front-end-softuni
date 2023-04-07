@@ -51,8 +51,8 @@ function solve(params) {
             deleteBtn.addEventListener("click", deletePrdoduct);
             
         });
-        
     }
+
     function getData() {
         fetch(BASE_URL)
         .then(response => response.json())
@@ -62,7 +62,7 @@ function solve(params) {
 
     function addProduct(e) {
         e.preventDefault();
-        if (product.value && count.value, price.value){
+        if (product.value && count.value && price.value){
             fetch(BASE_URL, {
                 method: "POST",
                 body: JSON.stringify({
@@ -77,6 +77,7 @@ function solve(params) {
             .then(data => getData())
             .catch((error) => console.log(error))
         }
+
         product.value = "";
         count.value = "";
         price.value = "";
@@ -84,10 +85,8 @@ function solve(params) {
 
     function updatePrdoduct(e) {
         currentProduct = e.target.parentNode.parentNode;
-        console.log(currentProduct.id);
         updateBtn.disabled = false;
         addBtn.disabled = true;
-        // console.log(e.target.parentNode.parentNode);
 
         product.value = currentProduct.querySelector(".name").textContent;
         count.value = currentProduct.querySelector(".count-product").textContent;
@@ -99,7 +98,7 @@ function solve(params) {
     }
 
     function sendUpdate(id){
-        if (product.value && count.value, price.value){
+        if (product.value && count.value && price.value){
             fetch(BASE_URL + id, {
                 method: "PATCH",
                 body: JSON.stringify({
@@ -118,6 +117,7 @@ function solve(params) {
             count.value = "";
             price.value = "";
         }
+        
         updateBtn.disabled = true;
         addBtn.disabled = false;
     }
