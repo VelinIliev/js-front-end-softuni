@@ -1,10 +1,10 @@
 function attachEvents() {
     const BASE_URL = 'http://localhost:3030/jsonstore/tasks/';
     const loadBoardBtn = document.getElementById('load-board-btn');
-    const inProgressSection = document.getElementById("in-progress-section");
-    const codeReviewSection = document.getElementById("code-review-section");
-    const doneSection = document.getElementById("done-section");
-    const todoSection = document.getElementById('todo-section');
+    const inProgressSection = document.querySelector("#in-progress-section .task-list");
+    const codeReviewSection = document.querySelector("#code-review-section .task-list");
+    const doneSection = document.querySelector("#done-section .task-list");
+    const todoSection = document.querySelector('#todo-section .task-list');
     const createTaskBtn = document.getElementById('create-task-btn');
     const titleVa = document.getElementById('title');
     const descriptionVa = document.getElementById("description");
@@ -22,7 +22,7 @@ function attachEvents() {
     }
 
     function displayProducts(data) {
-
+        // console.log(todoSection);
         todoSection.innerHTML = '';
         inProgressSection.innerHTML = '';
         codeReviewSection.innerHTML = '';
@@ -80,7 +80,11 @@ function attachEvents() {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             })
-            .then(data => loadData())
+            .then(data => {
+                titleVa.value = '';
+                descriptionVa.value = '';
+                loadData()
+            })
             .catch((error) => console.log(error))
         }
     }

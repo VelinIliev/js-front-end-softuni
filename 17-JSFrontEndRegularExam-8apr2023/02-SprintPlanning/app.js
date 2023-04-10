@@ -21,7 +21,7 @@ function solve() {
             "class": "feature",
         },
         "Low Priority Bug": {
-            "sign": "&#9888",
+            "sign": "&#9737",
             "class": "low-priority",
         },
         "High Priority Bug": {
@@ -36,8 +36,10 @@ function solve() {
         
         if (title.value && description.value &&  label.value && points.value && assignee.value) {
             
+
             lastTask += 1;
-            id = lastTask
+            id = lastTask;
+            taskId.value = `task-${id}`
 
             tasks[`task-${id}`] = {
                 "taskId": `task-${id}`,
@@ -48,16 +50,19 @@ function solve() {
                 "assignee": assignee.value
             }
 
+
             totalPoint += points.value * 1
             totalSprintPoints.textContent = `Total Points ${totalPoint}pts`;
 
-            let articleEl = document.createElement("ARTICLE")
-            articleEl.id  = tasks[`task-${id}`].taskId;
+            let articleEl = document.createElement("ARTICLE");
+            articleEl.id  = taskId.value;
             articleEl.className = `task-card`;
             tasksSection.appendChild(articleEl);
 
+
             let divEl = document.createElement("DIV");
-            divEl.className = `task-card-label ${labels[label.value].class}`;
+            divEl.className = `task-card-label`;
+            divEl.classList.add(labels[label.value].class)
             divEl.innerHTML = `${label.value} ${labels[label.value].sign}`;
             articleEl.appendChild(divEl)
 
@@ -78,7 +83,7 @@ function solve() {
 
             let divAssignee = document.createElement("DIV");
             divAssignee.className = "task-card-assignee";
-            divAssignee.textContent = `Assigned to ${assignee.value}`;
+            divAssignee.textContent = `Assigned to: ${assignee.value}`;
             articleEl.appendChild(divAssignee);
 
             let divActions = document.createElement("DIV");
@@ -96,18 +101,18 @@ function solve() {
 
         title.value = '';
         description.value = '';
+        label.value = ''
         points.value = '';
         assignee.value = '';
     })
 
     function deleteItem(e) {
-
-        itemToDelete = e.target.parentNode.parentNode;
-        id = e.target.parentNode.parentNode.id;
-
         createTaskBtn.disabled = true;
         deleteTaskBtn.disabled = false;
 
+        itemToDelete = e.target.parentNode.parentNode;
+        id = e.target.parentNode.parentNode.id;
+        
         title.value = tasks[id].title;
         title.disabled = true;
 
@@ -124,17 +129,21 @@ function solve() {
         assignee.disabled = true;
         
         deleteTaskBtn.addEventListener("click", () => {
-            itemToDelete.remove();
-
             totalPoint -= points.value * 1;
             totalSprintPoints.textContent = `Total Points ${totalPoint}pts`;
 
+            itemToDelete.remove();
+
+            createTaskBtn.disabled = false;
+            deleteTaskBtn.disabled = true;
+            
             title.value = "";
             title.disabled = false;
 
             description.value = "";
-            description.disabled = false
+            description.disabled = false;
             
+            label.value = '';
             label.disabled = false;
 
             points.value = "";
@@ -143,8 +152,7 @@ function solve() {
             assignee.value = "";
             assignee.disabled = false;
             
-            createTaskBtn.disabled = false;
-            deleteTaskBtn.disabled = true;
+            
             
         })
     }
