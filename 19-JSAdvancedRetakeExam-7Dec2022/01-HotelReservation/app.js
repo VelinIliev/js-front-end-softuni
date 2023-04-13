@@ -114,14 +114,14 @@ function solve() {
         e.currentTarget.parentNode.remove();
         nextBtn.disabled = false;
         verification.className = 'reservation-confirmed'
-        verification.textContent = 'Confirmed'
+        verification.textContent = 'Confirmed.'
     }
 
     function cancelReservation(e) {
         e.currentTarget.parentNode.remove();
         nextBtn.disabled = false;
         verification.className = 'reservation-cancelled'
-        verification.textContent = 'Cancelled'
+        verification.textContent = 'Cancelled.'
         
     }
 }
