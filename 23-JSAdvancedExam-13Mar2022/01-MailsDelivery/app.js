@@ -106,8 +106,6 @@ function solve() {
             currentRescipient = currentMail.querySelector("span:nth-child(1)").textContent.replace('To: ','');
             currentTitle = currentMail.querySelector("span:nth-child(2)").textContent.replace('Title: ','');
         }
-        console.log(currentTitle);
-        console.log(currentRescipient);
 
         let liEl = document.createElement("LI");
         deleteList.appendChild(liEl);
